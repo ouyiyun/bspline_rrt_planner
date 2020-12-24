@@ -1,0 +1,9 @@
+<library path="lib/libbspline_rrt_planner">
+    <class name="bspline_rrt_planner/BSplineRRTPlanner" 
+           type="bspline_rrt_planner::BSplineRRTPlanner"
+           base_class_type="nav_core::BaseGlobalPlanner">
+        <description>
+            A RRT PLanner that based Bspline or Bezier!
+        </description>
+    </class>
+</library>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<launch>
+	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+		<rosparam file="$(find autoware_nav)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find autoware_nav)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find autoware_nav)/config/local_costmap_params.yaml" command="load" />
+		<rosparam file="$(find autoware_nav)/config/global_costmap_params.yaml" command="load" />
+		<rosparam file="$(find autoware_nav)/config/teb_local_planner_params.yaml" command="load" />
+
+		<!-- global planner -->
+		<!-- global_planner/GlobalPlanner -->
+		<!-- bspline_rrt_planner/BSplineRRTPlanner -->
+		<!-- srrt_rs_plan/SRRTRSPlanner -->
+		<param name="base_global_planner" value="bspline_rrt_planner/BSplineRRTPlanner" />
+		<!-- <param name="planner_frequency" value="1.0" />
+		<param name="planner_patience" value="5.0" /> -->
+
+		<param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+		<param name="controller_frequency" value="2.0" />
+		<param name="controller_patience" value="15.0" />
+
+		<param name="clearing_rotation_allowed" value="false" />
+		<!-- Our carlike robot is not able to rotate in place -->
+
+		<remap from="odom" to="autoware/odom"/>
+		<!-- <remap from="cmd_vel" to="autoware/cmd_vel"/> -->
+	</node>
+</launch>
